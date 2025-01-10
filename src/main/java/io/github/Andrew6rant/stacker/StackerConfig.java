@@ -25,6 +25,6 @@ public class StackerConfig extends ReflectiveConfig {
             "minecraft:totem_of_undying:16"
     );
 
-    @Comment("Disallow \"Unstackable\" Items\nSet this to true to prevent changing the maximum stack size of all items that have a maximum stack size of 1 by default")
-    public final TrackedValue<Boolean> disallowUnstackableItems = value(true);
+    @Comment("Disallow \"Unstackable\" Items\nSet this to true to prevent changing the maximum stack size of all items that have a maximum stack size of 1 by default\nUseful as a last resort if Stack Size Overrides aren't enough")
+    public final TrackedValue<Boolean> disallowUnstackableItems = value(false);
 }
