@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(value = AnvilScreenHandler.class, priority = 999) // default priority is 1000, so this applies a bit after other mod's AnvilScreenHandler mixins
+@Mixin(value = AnvilScreenHandler.class, priority = 999) // default priority is 1000, so this applies a bit after other mods' AnvilScreenHandler mixins
 public class AnvilScreenHandlerMixin {
     // Credit to ZoeyTheEgoist for the original code behind this mixin
     @Redirect(method = "onTakeOutput", at = @At(value = "INVOKE", target = "Lnet/minecraft/inventory/Inventory;setStack(ILnet/minecraft/item/ItemStack;)V", ordinal = 3))

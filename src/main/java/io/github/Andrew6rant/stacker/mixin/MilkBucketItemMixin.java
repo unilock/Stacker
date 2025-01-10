@@ -1,6 +1,5 @@
 package io.github.Andrew6rant.stacker.mixin;
 
-import io.github.Andrew6rant.stacker.util.ItemsHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -14,11 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MilkBucketItem.class)
 public class MilkBucketItemMixin {
-
-    @Inject(method = "finishUsing", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/item/ItemStack;decrement(I)V"), cancellable = true)
+    @Inject(method = "finishUsing", at = @At("TAIL"), cancellable = true)
     private void stackableMilkBucket(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir){
-        user.clearStatusEffects();
-        ItemsHelper.insertNewItem((PlayerEntity)user, new ItemStack(Items.BUCKET));
+        ((PlayerEntity) user).getInventory().offerOrDrop(Items.BUCKET.getDefaultStack());
         cir.setReturnValue(stack);
     }
 }

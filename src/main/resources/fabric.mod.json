@@ -2,7 +2,6 @@
   "schemaVersion": 1,
   "id": "stacker",
   "version": "${version}",
-
   "name": "Stacker",
   "description": "Change the stack size of all items!",
   "authors": [
@@ -13,38 +12,20 @@
     "sources": "https://github.com/Andrew6rant/Stacker",
     "issues": "https://github.com/Andrew6rant/Stacker/issues"
   },
-
   "license": "CC0-1.0",
   "icon": "assets/stacker/icon.png",
-
   "environment": "*",
   "entrypoints": {
     "main": [
       "io.github.Andrew6rant.stacker.Stacker"
-    ],
-    "modmenu": [
-      "io.github.Andrew6rant.stacker.StackerModMenu"
     ]
   },
   "mixins": [
     "stacker.mixins.json"
   ],
-
   "depends": {
-    "fabricloader": ">=0.14.8",
-    "fabric": "*",
-    "minecraft": [
-      "1.19.4"
-    ],
-    "java": ">=17",
-    "cloth-config2": ">=10.0.0"
-  },
-  "custom": {
-    "modmenu": [
-      "io.github.Andrew6rant.stacker.StackerConfig"
-    ]
-  },
-  "suggests": {
-    "modmenu": "*"
+    "fabricloader": "*",
+    "minecraft": "1.19.4",
+    "fabric-api": "*"
   }
 }

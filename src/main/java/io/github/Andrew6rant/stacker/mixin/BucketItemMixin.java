@@ -1,6 +1,5 @@
 package io.github.Andrew6rant.stacker.mixin;
 
-import io.github.Andrew6rant.stacker.util.ItemsHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
@@ -12,12 +11,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(BucketItem.class)
 public class BucketItemMixin {
-
     @Inject(method = "getEmptiedStack", at = @At(value = "HEAD"), cancellable = true)
     private static void stackableBucket(ItemStack stack, PlayerEntity player, CallbackInfoReturnable<ItemStack> cir){
-        if(!player.isCreative()) {
+        if (!player.isCreative()) {
             if (stack.getCount() > 1) {
-                ItemsHelper.insertNewItem(player, new ItemStack(Items.BUCKET));
+                player.getInventory().offerOrDrop(Items.BUCKET.getDefaultStack());
                 stack.decrement(1);
                 cir.setReturnValue(stack);
             }
