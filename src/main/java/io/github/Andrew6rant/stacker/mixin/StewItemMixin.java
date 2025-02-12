@@ -15,7 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class StewItemMixin { // This mixin works for soups as well
     @Inject(method = "finishUsing", at = @At(value = "NEW", target = "(Lnet/minecraft/item/ItemConvertible;)Lnet/minecraft/item/ItemStack;"), cancellable = true)
     private void stackableStew(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir){
-        ((PlayerEntity) user).getInventory().offerOrDrop(Items.BOWL.getDefaultStack());
-        cir.setReturnValue(stack);
+        if (user instanceof PlayerEntity player) {
+            player.getInventory().offerOrDrop(Items.BOWL.getDefaultStack());
+            cir.setReturnValue(stack);
+        }
     }
 }

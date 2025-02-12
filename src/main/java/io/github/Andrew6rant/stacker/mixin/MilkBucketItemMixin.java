@@ -15,7 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MilkBucketItemMixin {
     @Inject(method = "finishUsing", at = @At("TAIL"), cancellable = true)
     private void stackableMilkBucket(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir){
-        ((PlayerEntity) user).getInventory().offerOrDrop(Items.BUCKET.getDefaultStack());
-        cir.setReturnValue(stack);
+        if (user instanceof PlayerEntity player) {
+            player.getInventory().offerOrDrop(Items.BUCKET.getDefaultStack());
+            cir.setReturnValue(stack);
+        }
     }
 }
