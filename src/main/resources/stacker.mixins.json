@@ -7,6 +7,7 @@
     "BucketItemMixin",
     "BundleItemMixin",
     "DispenserBehaviorMixin",
+    "GiveCommandMixin",
     "HorseScreenHandlerMixin",
     "ItemAccess",
     "LimitFurnaceStackMixin",
