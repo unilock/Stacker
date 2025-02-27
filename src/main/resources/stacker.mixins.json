@@ -16,7 +16,8 @@
     "StewItemMixin"
   ],
   "client": [
-    "client.ItemRenderScaleMixin"
+    "client.ItemRenderScaleMixin",
+    "client.ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1
