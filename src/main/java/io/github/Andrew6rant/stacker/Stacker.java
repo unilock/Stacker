@@ -2,7 +2,7 @@ package io.github.Andrew6rant.stacker;
 
 import io.github.Andrew6rant.stacker.mixin.ItemAccess;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -24,8 +24,7 @@ public class Stacker implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		CONFIG.registerCallback(config -> loadStacker("save"));
-		ServerLifecycleEvents.SERVER_STARTED.register(server -> loadStacker("load"));
-		ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> loadStacker("reload"));
+		CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> loadStacker("reload"));
 	}
 
 	public static void loadStacker(String configMsg) {
