@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(GiveCommand.class)
 public class GiveCommandMixin {
-	@ModifyVariable(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/command/argument/ItemStackArgument;createStack(IZ)Lnet/minecraft/item/ItemStack;"), index = 5)
+	@ModifyVariable(method = "execute", at = @At(value = "INVOKE", target = "Lnet/minecraft/command/argument/ItemStackArgument;createStack(IZ)Lnet/minecraft/item/ItemStack;", ordinal = 0), index = 5)
 	private static int j(int value) {
-		return Integer.MIN_VALUE;
+		return Integer.MAX_VALUE;
 	}
 }
